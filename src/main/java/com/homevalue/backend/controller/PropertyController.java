@@ -9,23 +9,24 @@ import com.homevalue.backend.model.Property;
 import com.homevalue.backend.service.PropertyService;
 
 @RestController
+@RequestMapping("/properties")   // 🔥 IMPORTANT
 @CrossOrigin(origins = "*")
 public class PropertyController {
 
     @Autowired
     private PropertyService service;
 
-    @GetMapping("/properties")
+    @GetMapping
     public List<Property> getAll() {
         return service.getAll();
     }
 
-    @PostMapping("/properties")
+    @PostMapping
     public Property add(@RequestBody Property p) {
         return service.add(p);
     }
 
-    @DeleteMapping("/properties/{id}")
+    @DeleteMapping("/{id}")
     public void delete(@PathVariable Long id) {
         service.delete(id);
     }
