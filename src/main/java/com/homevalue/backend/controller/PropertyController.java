@@ -1,8 +1,5 @@
 package com.homevalue.backend.controller;
-import com.homevalue.backend.model.Property;
 
-import com.homevalue.backend.repository.PropertyRepository;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -12,29 +9,25 @@ import java.util.List;
 @RequestMapping("/properties")
 public class PropertyController {
 
-    @Autowired
-    private PropertyRepository repository;
-
-    // GET ALL
+    // ✅ GET ALL (Dummy Data)
     @GetMapping
-    public List<Property> getAllProperties() {
-        return repository.findAll();
+    public List<String> getAllProperties() {
+        return List.of("House 1", "House 2", "House 3");
     }
 
-    // ADD PROPERTY
+    // ✅ ADD PROPERTY (Dummy)
     @PostMapping
-    public Property addProperty(@RequestBody Property property) {
-        return repository.save(property);
+    public String addProperty() {
+        return "Property added successfully (dummy)";
     }
 
-    // DELETE PROPERTY
+    // ✅ DELETE PROPERTY (Dummy)
     @DeleteMapping("/{id}")
     public String deleteProperty(@PathVariable Long id) {
-        repository.deleteById(id);
-        return "Deleted Successfully";
+        return "Deleted property with id: " + id;
     }
 
-    // ✅ RECOMMENDATIONS (IMPORTANT FOR YOUR PROJECT)
+    // ✅ RECOMMENDATIONS
     @GetMapping("/recommend")
     public List<String> getRecommendations(@RequestParam double budget,
                                            @RequestParam double size) {
