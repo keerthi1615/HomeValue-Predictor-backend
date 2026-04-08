@@ -1,26 +1,28 @@
 package com.homevalue.backend.service;
-import com.homevalue.backend.model.Property;
-import com.homevalue.backend.repository.PropertyRepository;
+
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.List;
+import com.homevalue.backend.model.Property;
+import com.homevalue.backend.repository.PropertyRepository;
 
 @Service
 public class PropertyService {
 
     @Autowired
-    private PropertyRepository repository;
-
-    public Property save(Property property) {
-        return repository.save(property);
-    }
+    private PropertyRepository repo;
 
     public List<Property> getAll() {
-        return repository.findAll();
+        return repo.findAll();
+    }
+
+    public Property add(Property p) {
+        return repo.save(p);
     }
 
     public void delete(Long id) {
-        repository.deleteById(id);
+        repo.deleteById(id);
     }
 }

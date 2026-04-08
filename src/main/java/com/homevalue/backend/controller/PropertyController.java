@@ -1,51 +1,32 @@
 package com.homevalue.backend.controller;
 
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.List;
+import com.homevalue.backend.model.Property;
+import com.homevalue.backend.service.PropertyService;
 
 @RestController
 @CrossOrigin(origins = "*")
-@RequestMapping("/properties")
 public class PropertyController {
 
-    // ✅ GET ALL (Dummy Data)
-    @GetMapping
-    public List<String> getAllProperties() {
-        return List.of("House 1", "House 2", "House 3");
+    @Autowired
+    private PropertyService service;
+
+    @GetMapping("/properties")
+    public List<Property> getAll() {
+        return service.getAll();
     }
 
-    // ✅ ADD PROPERTY (Dummy)
-    @PostMapping
-    public String addProperty() {
-        return "Property added successfully (dummy)";
+    @PostMapping("/properties")
+    public Property add(@RequestBody Property p) {
+        return service.add(p);
     }
 
-    // ✅ DELETE PROPERTY (Dummy)
-    @DeleteMapping("/{id}")
-    public String deleteProperty(@PathVariable Long id) {
-        return "Deleted property with id: " + id;
-    }
-
-    // ✅ RECOMMENDATIONS
-    @GetMapping("/recommend")
-    public List<String> getRecommendations(@RequestParam double budget,
-                                           @RequestParam double size) {
-
-        List<String> suggestions = new java.util.ArrayList<>();
-
-        if (budget > 4000000) {
-            suggestions.add("Upgrade flooring to premium tiles");
-            suggestions.add("Install modular kitchen");
-        }
-
-        if (size > 1000) {
-            suggestions.add("Add garden or balcony");
-        }
-
-        suggestions.add("Use smart lighting system");
-        suggestions.add("Add fresh paint");
-
-        return suggestions;
+    @DeleteMapping("/properties/{id}")
+    public void delete(@PathVariable Long id) {
+        service.delete(id);
     }
 }
