@@ -31,4 +31,8 @@ public class Property {
 
     public String getImageUrl() { return imageUrl; }
     public void setImageUrl(String imageUrl) { this.imageUrl = imageUrl; }
+
+    public void setId(Long id) {
+    this.id = id;
+}
 }
