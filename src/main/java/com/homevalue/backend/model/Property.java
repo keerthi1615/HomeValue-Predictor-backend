@@ -1,5 +1,6 @@
 package com.homevalue.backend.model;
 
+<<<<<<< HEAD
 import jakarta.persistence.*;
 
 @Entity
@@ -23,6 +24,15 @@ public class Property {
     private String type;
     
     @Column
+=======
+public class Property {
+
+    private Long id;
+    private String location;
+    private String budget;
+    private String size;
+    private String type;
+>>>>>>> 1a8139f734c85ba714919341090303e85006d851
     private String imageUrl;
 
     // ✅ Default Constructor
